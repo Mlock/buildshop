@@ -1,0 +1,220 @@
+---
+alwaysApply: true
+---
+
+# Landing Page Development Rules
+
+This project is a **landing page** built with Next.js 15+ App Router. Focus on simplicity, performance, and componentization.
+
+## Project Structure
+
+```
+app/
+├── layout.tsx              # Root layout (metadata, fonts, providers)
+├── page.tsx                # Landing page (composes section components)
+├── globals.css             # Global styles
+└── [optional-routes]/      # Minimal routing (e.g., /privacy, /terms)
+
+components/
+├── sections/               # Landing page section components
+│   ├── hero.tsx
+│   ├── about.tsx
+│   ├── features.tsx
+│   ├── how-it-works.tsx
+│   ├── testimonials.tsx
+│   ├── pricing.tsx
+│   ├── cta.tsx
+│   └── faq.tsx
+├── layout/                 # Layout components
+│   ├── header.tsx
+│   ├── footer.tsx
+│   └── navigation.tsx
+└── ui/                     # Reusable UI components (buttons, cards, etc.)
+    ├── button.tsx
+    ├── card.tsx
+    └── ...
+```
+
+## Core Principles
+
+### 1. Componentization
+- **Each landing page section is a separate component** in `components/sections/`
+- Sections should be self-contained and reusable
+- Use composition: `app/page.tsx` imports and composes section components
+- Example structure:
+  ```tsx
+  // app/page.tsx
+  import { Hero } from '@/components/sections/hero'
+  import { About } from '@/components/sections/about'
+  import { Features } from '@/components/sections/features'
+  
+  export default function Home() {
+    return (
+      <>
+        <Hero />
+        <About />
+        <Features />
+        {/* ... */}
+      </>
+    )
+  }
+  ```
+
+### 2. Next.js App Router Best Practices
+- Use **Server Components by default** (no 'use client' unless needed)
+- Use `next/image` for all images with proper `width`, `height`, and `alt`
+- Use `next/link` for internal navigation
+- Implement proper metadata in `layout.tsx`:
+  ```tsx
+  export const metadata = {
+    title: 'Page Title',
+    description: 'Page description',
+    openGraph: { ... },
+    twitter: { ... }
+  }
+  ```
+
+### 3. Performance Optimization
+- **Lazy load below-the-fold sections** using dynamic imports:
+  ```tsx
+  const Testimonials = dynamic(() => import('@/components/sections/testimonials'), {
+    ssr: true
+  })
+  ```
+- Use `priority` prop on above-the-fold images
+- Optimize fonts with `next/font`:
+  ```tsx
+  import { Inter } from 'next/font/google'
+  const inter = Inter({ subsets: ['latin'] })
+  ```
+- Minimize JavaScript bundle size (avoid heavy client-side libraries)
+
+### 4. Section Component Structure
+Each section component should:
+- Be a **Server Component** unless it requires interactivity
+- Accept props for content (avoid hardcoding)
+- Be responsive (mobile-first approach)
+- Have semantic HTML structure
+- Include proper accessibility attributes
+
+Example:
+```tsx
+// components/sections/hero.tsx
+interface HeroProps {
+  title: string
+  description: string
+  ctaText: string
+  ctaHref: string
+}
+
+export function Hero({ title, description, ctaText, ctaHref }: HeroProps) {
+  return (
+    <section className="hero-section">
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <Link href={ctaHref}>{ctaText}</Link>
+    </section>
+  )
+}
+```
+
+### 5. Styling Guidelines
+- Use **Tailwind CSS** for styling (utility-first)
+- Create reusable component classes in `globals.css` if needed
+- Use CSS variables for theming (dark mode support)
+- Follow mobile-first responsive design
+- Ensure proper contrast ratios for accessibility
+
+### 6. SEO Best Practices
+- Implement proper heading hierarchy (h1 → h2 → h3)
+- Use semantic HTML5 elements (`<section>`, `<article>`, `<header>`, `<footer>`)
+- Add structured data (JSON-LD) when appropriate
+- Optimize meta tags in `layout.tsx`
+- Use descriptive `alt` text for images
+- Implement proper canonical URLs
+
+### 7. TypeScript Standards
+- Use **strict TypeScript** configuration
+- Define interfaces/types for component props
+- Avoid `any` types
+- Use type inference where appropriate
+- Export types from components when reused
+
+### 8. File Naming Conventions
+- Components: **PascalCase** (`Hero.tsx`, `About.tsx`)
+- Files: **kebab-case** for non-components (`globals.css`, `utils.ts`)
+- Directories: **kebab-case** (`components/sections/`, `lib/utils/`)
+
+### 9. Code Organization
+- Keep components **under 200 lines** when possible
+- Extract reusable logic into custom hooks (`lib/hooks/`)
+- Place utility functions in `lib/utils/`
+- Co-locate related files (component + types + styles if needed)
+
+### 10. Client-Side Interactivity
+- Only use `'use client'` when necessary (forms, animations, state)
+- Prefer Server Components for static content
+- Use React Server Actions for form submissions
+- Implement progressive enhancement
+
+## Common Landing Page Sections
+
+When creating sections, follow these patterns:
+
+1. **Hero Section**: Above-the-fold, compelling headline, primary CTA
+2. **About/Problem**: Explain the problem and solution
+3. **Features**: Grid/list of key features with icons/images
+4. **How It Works**: Step-by-step process visualization
+5. **Testimonials**: Social proof with quotes and avatars
+6. **Pricing**: Clear pricing tiers (if applicable)
+7. **FAQ**: Accordion-style questions and answers
+8. **CTA**: Final call-to-action before footer
+9. **Footer**: Links, copyright, social media
+
+## Anti-Patterns to Avoid
+
+- ❌ Don't create complex routing (this is a landing page)
+- ❌ Don't use client-side state for static content
+- ❌ Don't bundle heavy libraries (use lightweight alternatives)
+- ❌ Don't hardcode content (use props or constants)
+- ❌ Don't skip accessibility (ARIA labels, keyboard navigation)
+- ❌ Don't ignore mobile experience
+- ❌ Don't use inline styles (use Tailwind classes)
+
+## Import Organization
+
+```tsx
+// 1. React and Next.js
+import { type FC } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+// 2. Third-party libraries
+import { clsx } from 'clsx'
+
+// 3. Internal components
+import { Button } from '@/components/ui/button'
+import { Header } from '@/components/layout/header'
+
+// 4. Utilities and types
+import { cn } from '@/lib/utils'
+import type { SectionProps } from '@/types'
+
+// 5. Styles
+import './styles.css' // Only if needed
+```
+
+## Testing Considerations
+
+- Test responsive breakpoints
+- Verify accessibility (keyboard navigation, screen readers)
+- Check performance (Lighthouse scores)
+- Validate SEO (meta tags, structured data)
+- Test on multiple browsers
+
+## Deployment
+
+- Optimize images before deployment
+- Ensure environment variables are set
+- Verify analytics tracking (if applicable)
+- Test production build locally before deploying
