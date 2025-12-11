@@ -308,160 +308,50 @@ When creating sections, follow these patterns:
 8. **CTA**: Final call-to-action before footer
 9. **Footer**: Links, copyright, social media
 
-## Animation Patterns
-
-### Scroll-Triggered Animations
-```tsx
-'use client'
-
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-
-export function ScrollSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
-  
-  return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
-    >
-      {/* content */}
-    </motion.section>
-  )
-}
-```
-
-### Stagger Animations for Grids
-```tsx
-'use client'
-
-import { motion } from 'framer-motion'
-
-const container = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
-
-const item = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 }
-}
-
-export function FeaturesGrid({ items }) {
-  return (
-    <motion.div variants={container} initial="initial" animate="animate">
-      {items.map((item, i) => (
-        <motion.div key={i} variants={item}>
-          {/* item content */}
-        </motion.div>
-      ))}
-    </motion.div>
-  )
-}
-```
-
-### Hover Interactions
-```tsx
-'use client'
-
-import { motion } from 'framer-motion'
-
-export function AnimatedCard() {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.05, y: -5 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="card"
-    >
-      {/* card content */}
-    </motion.div>
-  )
-}
-```
-
 ## Anti-Patterns to Avoid
 
-- ❌ **Don't create API routes** (this is a static landing page)
-- ❌ **Don't use Server Actions** (no backend functionality)
-- ❌ **Don't add database connections** (no data persistence)
-- ❌ **Don't create complex routing** (minimal static pages only)
-- ❌ **Don't animate everything** (use animations purposefully)
-- ❌ **Don't ignore `prefers-reduced-motion`** (accessibility requirement)
-- ❌ **Don't use heavy animations on mobile** (performance matters)
-- ❌ **Don't hardcode content** (use props or constants from `lib/utils/constants.ts`)
-- ❌ **Don't skip accessibility** (ARIA labels, keyboard navigation)
-- ❌ **Don't ignore mobile experience** (test on real devices)
-- ❌ **Don't use inline styles** (use Tailwind classes)
-- ❌ **Don't forget to optimize images** (use `next/image` always)
+- ❌ Don't create complex routing (this is a landing page)
+- ❌ Don't use client-side state for static content
+- ❌ Don't bundle heavy libraries (use lightweight alternatives)
+- ❌ Don't hardcode content (use props or constants)
+- ❌ Don't skip accessibility (ARIA labels, keyboard navigation)
+- ❌ Don't ignore mobile experience
+- ❌ Don't use inline styles (use Tailwind classes)
 
 ## Import Organization
 
 ```tsx
 // 1. React and Next.js
-'use client'
-
-import { type FC, useRef } from 'react'
+import { type FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// 2. Framer Motion
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-
-// 3. Third-party libraries
+// 2. Third-party libraries
 import { clsx } from 'clsx'
 
-// 4. Animation utilities
-import { fadeInUp, staggerContainer } from '@/components/animations/variants'
-import { useScrollAnimation } from '@/components/animations/hooks'
-
-// 5. Internal components
+// 3. Internal components
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/layout/header'
 
-// 6. Utilities and types
+// 4. Utilities and types
 import { cn } from '@/lib/utils'
 import type { SectionProps } from '@/types'
 
-// 7. Constants
-import { HERO_CONTENT } from '@/lib/utils/constants'
-
-// 8. Styles
+// 5. Styles
 import './styles.css' // Only if needed
 ```
 
 ## Testing Considerations
 
-- Test responsive breakpoints (mobile, tablet, desktop)
-- Verify accessibility (keyboard navigation, screen readers, `prefers-reduced-motion`)
-- Check performance (Lighthouse scores, Core Web Vitals)
+- Test responsive breakpoints
+- Verify accessibility (keyboard navigation, screen readers)
+- Check performance (Lighthouse scores)
 - Validate SEO (meta tags, structured data)
-- Test animations on different devices (especially mobile)
-- Verify animations work with reduced motion preferences
-- Test on multiple browsers (Chrome, Safari, Firefox)
-- Check animation performance (60fps target)
+- Test on multiple browsers
 
 ## Deployment
 
-- Optimize images before deployment (use `next/image` with proper sizes)
-- Ensure all animations are performant (test on slower devices)
+- Optimize images before deployment
+- Ensure environment variables are set
 - Verify analytics tracking (if applicable)
 - Test production build locally before deploying
-- Check bundle size (keep it minimal for landing page)
-- Verify all static assets are properly referenced
-- Test with JavaScript disabled (graceful degradation)
-
-## Open Source Considerations
-
-- Keep code clean and well-commented
-- Use clear, descriptive variable and function names
-- Document animation patterns and reusable variants
-- Include README with setup instructions
-- Add comments explaining complex animation logic
-- Ensure code follows consistent style (use ESLint/Prettier)
