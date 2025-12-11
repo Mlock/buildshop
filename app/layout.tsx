@@ -24,8 +24,49 @@ const permanentMarker = Permanent_Marker({
 });
 
 export const metadata: Metadata = {
-  title: "buildshop",
-  description: "build something real this weekend",
+  metadataBase: new URL("https://buildshop.com"),
+  title: {
+    default: "Buildshop",
+    template: "%s | Buildshop",
+  },
+  description: "Est. 2025 — Tokyo, Japan. Build something real this weekend.",
+  keywords: ["builders", "makers", "startups", "tokyo", "community", "software", "hardware"],
+  authors: [{ name: "Buildshop" }],
+  creator: "Buildshop",
+  openGraph: {
+    title: "Buildshop",
+    description: "Est. 2025 — Tokyo, Japan. Build something real this weekend.",
+    url: "https://buildshop.com",
+    siteName: "Buildshop",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // Please add this image to your public folder
+        width: 1200,
+        height: 630,
+        alt: "Buildshop - Build something real this weekend",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Buildshop",
+    description: "Est. 2025 — Tokyo, Japan. Build something real this weekend.",
+    creator: "@buildshop", // Update with actual handle if different
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
