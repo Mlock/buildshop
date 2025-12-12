@@ -8,7 +8,29 @@ A step-by-step guide for building and deploying your first landing page using AI
 
 Complete these steps at least 48 hours before class. Each takes 5-10 minutes.
 
-### 1. Gather Inspiration
+### 1. Install Homebrew (Mac only)
+
+Homebrew makes it easy to install developer tools. Open Terminal and run:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Follow the prompts. Once installed, install Node.js and pnpm:
+
+```bash
+brew install node
+brew install pnpm
+```
+
+Verify installation:
+
+```bash
+node --version
+pnpm --version
+```
+
+### 2. Gather Inspiration
 
 Find 2-3 landing pages you admire. Screenshot specific sections:
 - A hero section (the top fold)
@@ -22,28 +44,28 @@ Good places to find inspiration:
 - [Lapa.ninja](https://lapa.ninja)
 - [Awwwards](https://awwwards.com)
 
-### 2. Create a GitHub Account
+### 3. Create a GitHub Account
 
 1. Go to [github.com](https://github.com)
 2. Click "Sign up"
 3. Follow the prompts to create your account
 4. Verify your email address
 
-### 3. Install Cursor
+### 4. Install Cursor
 
 1. Go to [cursor.com](https://cursor.com)
 2. Download the installer for your operating system
 3. Run the installer
 4. Open Cursor once to complete setup
 
-### 4. Create a Vercel Account
+### 5. Create a Vercel Account
 
 1. Go to [vercel.com](https://vercel.com)
 2. Click "Start Deploying"
 3. Choose "Continue with GitHub"
 4. Authorize Vercel to access your GitHub account
 
-### 5. Create an Aura Account
+### 6. Create an Aura Account
 
 1. Go to [aura.build](https://aura.build)
 2. Sign up for a free account

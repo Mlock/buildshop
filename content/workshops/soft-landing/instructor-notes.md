@@ -16,9 +16,10 @@ Teaching guide for facilitators running the 2-hour workshop.
 ### Pre-Check (Day Before)
 
 Send reminder email with:
-- Pre-workshop checklist (accounts + software)
+- Pre-workshop checklist (Homebrew, accounts, software)
 - Troubleshooting links if they had issues
 - What to bring: laptop, charger, inspiration screenshots
+- Note: Homebrew + Node.js installation can take 10-15 minutes
 
 ### Your Demo Environment
 
@@ -58,7 +59,7 @@ Walk through each terminal command. Explain briefly what each does:
 
 **Common stumbling points:**
 
-- Node.js not installed (they'll need to download it — this is a blocker)
+- Homebrew/Node.js not installed (have them run the install commands from the guide — takes 5-10 min)
 - Wrong directory (they ran commands outside the project folder)
 - Git credentials not set up (GitHub Desktop can help)
 
