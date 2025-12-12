@@ -59,7 +59,10 @@ Walk through each terminal command. Explain briefly what each does:
 
 **Common stumbling points:**
 
-- Homebrew/Node.js not installed (have them run the install commands from the guide — takes 5-10 min)
+- Node.js not installed:
+  - Mac: run Homebrew install commands from guide (5-10 min)
+  - Windows: download from nodejs.org or use winget
+- Windows: PowerShell needs to be run as Administrator for global npm installs
 - Wrong directory (they ran commands outside the project folder)
 - Git credentials not set up (GitHub Desktop can help)
 

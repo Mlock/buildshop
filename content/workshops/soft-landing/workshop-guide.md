@@ -8,27 +8,52 @@ A step-by-step guide for building and deploying your first landing page using AI
 
 Complete these steps at least 48 hours before class. Each takes 5-10 minutes.
 
-### 1. Install Homebrew (Mac only)
+### 1. Install Node.js and pnpm
 
-Homebrew makes it easy to install developer tools. Open Terminal and run:
+**Mac:**
+
+Install Homebrew first (makes developer tools easy to manage). Open Terminal and run:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Follow the prompts. Once installed, install Node.js and pnpm:
+Follow the prompts. Then install Node.js and pnpm:
 
 ```bash
 brew install node
 brew install pnpm
 ```
 
-Verify installation:
+**Windows:**
+
+Option A — Direct download (simplest):
+1. Go to [nodejs.org](https://nodejs.org)
+2. Download the LTS version
+3. Run the installer, accept defaults
+4. Open PowerShell and install pnpm:
+
+```powershell
+npm install -g pnpm
+```
+
+Option B — Using winget (Windows 10/11):
+
+Open PowerShell and run:
+
+```powershell
+winget install OpenJS.NodeJS.LTS
+npm install -g pnpm
+```
+
+**Verify installation (both platforms):**
 
 ```bash
 node --version
 pnpm --version
 ```
+
+Both commands should return version numbers.
 
 ### 2. Gather Inspiration
 
@@ -451,6 +476,17 @@ Consider joining a buildshop full workshop to go deeper:
 ---
 
 ## Troubleshooting
+
+**Node.js / pnpm issues:**
+
+Mac:
+- If `brew` command not found, restart Terminal after Homebrew install
+- Run `brew doctor` to check for issues
+
+Windows:
+- Run PowerShell as Administrator for global installs (`npm install -g pnpm`)
+- If `node` command not found, restart PowerShell after installation
+- Check that Node.js was added to PATH during installation
 
 **Build errors:**
 
