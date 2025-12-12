@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { Quote } from 'lucide-react'
 import { staggerContainer, fadeInUp } from '@/components/animations/variants'
 
-const testimonials = [
+const testimonials: { quote: string; initials: string; name: string; handle?: string }[] = [
   {
     quote: "buildshop stripped away all the complexity. I’ve never coded a day in my life. And never thought I could do it as my day job is wayyy outside of tech. But in two-ish hours, I learned more about coding and website building than I had in the past 39 years.",
     initials: "JB",
