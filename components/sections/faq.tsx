@@ -12,7 +12,7 @@ const questions = [
   },
   {
     question: "Can I join from anywhere?",
-    answer: "Yes. We meet in Tokyo and online. You get the same instruction, same community, same feedback whether you're here or across the world."
+    answer: "No. We meet in Tokyo at the moment and our classes are in-person. We may offer online classes in the future, but for now, we're focused on in-person learning."
   },
   {
     question: "How long does it take?",
@@ -20,7 +20,7 @@ const questions = [
   },
   {
     question: "What tools do we use?",
-    answer: "Cursor, modern AI tools, and whatever works for your idea. We focus on speed and results, not learning unnecessary software."
+    answer: "Cursor, modern AI tools, and whatever works for your idea. We focus on speed and results, and outcomes. So we may use tools that are not the most popular, but are the most effective for the task at hand."
   },
   {
     question: "What if I get stuck?",

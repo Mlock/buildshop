@@ -7,22 +7,22 @@ import { staggerContainer, fadeInUp } from '@/components/animations/variants'
 
 const testimonials = [
   {
-    quote: "I shipped my first SaaS in a single weekend. The AI workflow they teach is pure magic. It felt like cheating, but the revenue is real.",
-    initials: "DK",
-    name: "David K.",
-    handle: "@david_codes"
+    quote: "buildshop stripped away all the complexity. I’ve never coded a day in my life. And never thought I could do it as my day job is wayyy outside of tech. But in two-ish hours, I learned more about coding and website building than I had in the past 39 years.",
+    initials: "JB",
+    name: "Joe B.",
+    // handle: "@joe_builds"
   },
   {
-    quote: "buildshop stripped away all the complexity. I stopped overthinking the stack and just built. The 'ship' mindset is contagious.",
-    initials: "SY",
-    name: "Sarah Y.",
-    handle: "@sarah_builds"
+    quote: "I’m not an engineer but I built 5 websites + apps after my first session with the buildshop team. One app in particular got 1000 signups on the day it launched, and had people actively using it. It’s really incredible that I’ve been able to build real working products for real problems, just from one session. Today it’s second nature for me to build simple tools — and I’ve gone familiar with code in the process!",
+    initials: "SI",
+    name: "Saya I.",
+    // handle: "@iiwoks"
   },
   {
-    quote: "Went from Figma designs to a live URL in 48 hours. The energy in the room was electric. Best investment I made this year.",
-    initials: "MJ",
-    name: "Mike J.",
-    handle: "@mike_ships"
+    quote: "I've been working in the public sector for most of my career, and a couple hours with Matt, I felt like I had the confidence to start coding my own projects. Shortly after, I published my first app on the App Store! I would have never thought I could do this before buildshop.",
+    initials: "JB",
+    name: "Jesse B.",
+    // handle: "@j"
   }
 ]
 
@@ -56,12 +56,12 @@ export function Testimonials() {
               </p>
             </div>
             <div className="flex items-center gap-4 pt-6 border-t border-neutral-800/50">
-              <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-xs font-mono border border-neutral-700">
+              <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-xs font-mono border border-neutral-700 shrink-0">
                 {t.initials}
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-white">{t.name}</span>
-                <span className="text-xs text-neutral-500 font-mono">{t.handle}</span>
+                <span className="text-sm font-medium text-white whitespace-nowrap">{t.name}</span>
+                {t.handle && <span className="text-xs text-neutral-500 font-mono">{t.handle}</span>}
               </div>
             </div>
           </motion.div>
