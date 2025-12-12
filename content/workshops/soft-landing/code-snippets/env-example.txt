@@ -1,0 +1,11 @@
+# .env.local
+# Copy this file and rename to .env.local
+# Replace the placeholder values with your actual keys
+
+# Resend API Key
+# Get this from: https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Resend Audience ID
+# Get this from: https://resend.com/audiences (create an audience first)
+RESEND_AUDIENCE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
