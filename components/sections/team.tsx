@@ -24,10 +24,10 @@ interface Member {
 const TEAM: Member[] = [
   {
     name: 'Sota',
-    role: 'co-founder',
+    role: 'founding member',
     handle: 'full_stack_architect',
     description: 'Ex-Mercari engineer obsessed with shipping. I break down complex distributed systems into copy-pasteable blocks for your MVP.',
-    image: 'https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=2160&q=80',
+    image: '/sota.png',
     socials: [
       { type: 'twitter', href: '#' },
       { type: 'github', href: '#' },
@@ -35,10 +35,10 @@ const TEAM: Member[] = [
   },
   {
     name: 'Matt',
-    role: 'co-founder',
+    role: 'founding member',
     handle: 'product_engineer',
     description: 'Early-lyft team member and launched startups around the world. I teach you how to make your hastily written code look like a Series A startup from day one.',
-    image: 'https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=2160&q=80',
+    image: '/matt.png',
     socials: [
       { type: 'instagram', href: '#' },
       { type: 'globe', href: '#' },
