@@ -285,57 +285,75 @@ Not happy with something? Select the code and use Cursor AI:
 
 Keep iterating until the design feels right.
 
-### 2.4 Newsletter Signup with Resend (25 min)
+### 2.4 Newsletter Signup with Google Sheets (25 min)
 
-**Create a Resend account:**
+**Create your Google Sheet:**
 
-1. Go to [resend.com](https://resend.com)
-2. Sign up with your email
-3. Go to "API Keys"
-4. Click "Create API Key"
-5. Copy the key (you'll only see it once)
+1. Go to [sheets.google.com](https://sheets.google.com)
+2. Create a new spreadsheet
+3. Name it "Newsletter Subscribers"
+4. In row 1, add headers: `Email` (A1), `Timestamp` (B1)
+
+**Create the Apps Script:**
+
+1. In your spreadsheet, go to Extensions → Apps Script
+2. Delete any existing code and paste:
+
+```javascript
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet()
+  const data = JSON.parse(e.postData.contents)
+
+  sheet.appendRow([data.email, new Date().toISOString()])
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ success: true }))
+    .setMimeType(ContentService.MimeType.JSON)
+}
+```
+
+3. Click "Save" (give it a name like "Newsletter Handler")
+4. Click "Deploy" → "New deployment"
+5. Click the gear icon → "Web app"
+6. Set "Execute as" to "Me"
+7. Set "Who has access" to "Anyone"
+8. Click "Deploy"
+9. Click "Authorize access" and follow the prompts
+10. Copy the Web app URL (you'll need this)
 
 **Add environment variables:**
 
 Create a file called `.env.local` in your project root:
 
 ```
-RESEND_API_KEY=re_your_api_key_here
+GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/your-script-id/exec
 ```
 
-**Install packages:**
-
-```bash
-npm install resend
-```
+Paste the Web app URL you copied.
 
 **Create the API route:**
 
 Create file `src/app/api/subscribe/route.ts`:
 
 ```typescript
-import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   const { email } = await request.json()
 
-  const { error } = await resend.contacts.create({
-    email,
-    audienceId: process.env.RESEND_AUDIENCE_ID || '',
-  })
+  const response = await fetch(process.env.GOOGLE_SCRIPT_URL!, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  }).catch(() => null)
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 })
+  if (!response?.ok) {
+    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 400 })
   }
 
   return NextResponse.json({ success: true })
 }
 ```
-
-Note: You'll need to create an Audience in Resend and add the `RESEND_AUDIENCE_ID` to your `.env.local`.
 
 **Create the newsletter form component:**
 
@@ -427,7 +445,7 @@ export default function Home() {
 2. Go to your newsletter section
 3. Enter your email
 4. Submit
-5. Check Resend dashboard to confirm the contact was added
+5. Open your Google Sheet to confirm the email was added
 
 ---
 
@@ -439,8 +457,7 @@ Add your environment variables to Vercel:
 
 1. Go to your project in [vercel.com](https://vercel.com)
 2. Click "Settings" → "Environment Variables"
-3. Add `RESEND_API_KEY` with your key
-4. Add `RESEND_AUDIENCE_ID` with your audience ID
+3. Add `GOOGLE_SCRIPT_URL` with your Apps Script Web app URL
 
 Deploy your changes:
 
@@ -501,11 +518,12 @@ If `npm run dev` fails, check:
 - Make sure all environment variables are set
 - Verify your code works locally first
 
-**Resend not working:**
+**Google Sheets not working:**
 
-- Confirm your API key is correct
-- Check you created an Audience and have the right ID
-- Look at Resend dashboard for error logs
+- Verify your Apps Script is deployed as a Web app
+- Check that "Who has access" is set to "Anyone"
+- Confirm the Web app URL in your environment variables is correct
+- Re-deploy the script if you made changes (each deployment creates a new URL)
 
 **Cursor AI not responding:**
 
@@ -519,6 +537,6 @@ If `npm run dev` fails, check:
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Resend Documentation](https://resend.com/docs)
+- [Google Apps Script Documentation](https://developers.google.com/apps-script)
 - [Aura.build](https://aura.build)
 - [Vercel Documentation](https://vercel.com/docs)
