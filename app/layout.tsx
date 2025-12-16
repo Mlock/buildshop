@@ -24,7 +24,7 @@ const permanentMarker = Permanent_Marker({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buildshop.com"),
+  metadataBase: new URL("https://buildshop.club"),
   title: {
     default: "Buildshop",
     template: "%s | Buildshop",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Buildshop",
     description: "Est. 2025 — Tokyo, Japan. Build something real this weekend.",
-    url: "https://buildshop.com",
+    url: "https://buildshop.club",
     siteName: "Buildshop",
     locale: "en_US",
     type: "website",
