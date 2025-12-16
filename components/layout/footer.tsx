@@ -27,9 +27,9 @@ export function Footer() {
           </div>
           
           {/* Center */}
-          {/* <div className="flex flex-col md:items-center">
-            <a href="#" className="hover:text-neutral-600 transition-colors">Instagram</a>
-          </div> */}
+          <div className="flex flex-col md:items-center">
+            {/* <a href="#" className="hover:text-neutral-600 transition-colors">Instagram</a> */}
+          </div> 
 
           {/* Right */}
           <div className="flex flex-col md:items-end text-left md:text-right space-y-0.5">
