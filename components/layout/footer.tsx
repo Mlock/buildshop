@@ -21,19 +21,19 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 mb-16 md:mb-24 text-xs md:text-sm font-semibold uppercase tracking-tight">
           {/* Left */}
           <div className="flex flex-col space-y-0.5">
-            <a href="mailto:hello@buildshop.com" className="hover:text-neutral-600 transition-colors">buildshopjp@gmail.com</a>
+            <a href="mailto:buildshopjp@gmail.com" className="hover:text-neutral-600 transition-colors">buildshopjp@gmail.com</a>
             <p>Shibuya City, Tokyo</p>
             <p>150-0002, Japan</p>
           </div>
           
           {/* Center */}
-          <div className="flex flex-col md:items-center">
+          {/* <div className="flex flex-col md:items-center">
             <a href="#" className="hover:text-neutral-600 transition-colors">Instagram</a>
-          </div>
+          </div> */}
 
           {/* Right */}
           <div className="flex flex-col md:items-end text-left md:text-right space-y-0.5">
-            <p>Website by buildshop</p>
+          <a href="https://github.com/Mlock/buildshop" className="hover:text-neutral-600 transition-colors">Download BS Landingpage</a>
             <p>©2025 — All Rights Reserved</p>
           </div>
         </div>
