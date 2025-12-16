@@ -19,7 +19,7 @@
 
 # production
 /build
-/content
+/content/
 
 # misc
 .DS_Store
